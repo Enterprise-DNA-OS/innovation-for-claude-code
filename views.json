@@ -1,13 +1,31 @@
 [
   {
     "name": "week",
-    "title": "This week",
-    "subtitle": "Innovation for Claude Code: what needs attention, rendered by npm run view",
+    "title": "Innovation review",
+    "subtitle": "Triage, review gaps and overdue pilots",
     "sections": [
       {
         "title": "Needs attention",
-        "note": "TODO(author): point this at the industry's attention view (overdue, stuck, quiet).",
-        "sql": "select 'replace me' as item, 'TODO(author)' as why"
+        "sql": "select * from attention_items order by due_date,kind,item"
+      },
+      {
+        "title": "Review coverage",
+        "sql": "select campaign,name,criteria,covered,complete_reviewers,weighted_score from idea_scores order by campaign,name"
+      }
+    ]
+  },
+  {
+    "name": "outcomes",
+    "title": "Commitments and measured outcomes",
+    "subtitle": "Only independently verified outcomes are counted; currencies stay separate",
+    "sections": [
+      {
+        "title": "Campaign budget",
+        "sql": "select name,currency,budget,committed,verified_outcomes from campaign_summary order by name"
+      },
+      {
+        "title": "Pilot results",
+        "sql": "select name,metric,baseline,target,actual,status,evidence from pilots order by name"
       }
     ]
   }

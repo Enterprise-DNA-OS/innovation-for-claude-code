@@ -22,9 +22,44 @@ Fill this in once. A worker with context knows. A worker without it guesses.
 
 | When the operator asks for... | Use this |
 |---|---|
-| <!-- TODO(author): one row per slash command --> | `/...` |
+| Read challenge goals, closing dates and budgets | `/campaigns` |
+| List ideas and original source phases | `/ideas` |
+| Assign the new ideas that need a first review | `/triage` |
+| Read the campaign scoring rubric | `/criteria` |
+| Read scores and the reasons behind them | `/reviews` |
+| Compare weighted scores with reviewer coverage | `/shortlist` |
+| Review pilot targets, actuals and due dates | `/pilots` |
+| Read measured periods and verification status | `/outcomes` |
+| Compare approved budgets with pilot commitments | `/budgets` |
+| Read the reasons for stage decisions | `/decisions` |
+| Find incomplete scorecards | `/review-coverage` |
+| Read verified outcomes by department and currency | `/department-impact` |
+| Find unowned, late and quiet work | `/attention` |
+| Review retention and evidence findings | `/compliance` |
+| Read attributed changes | `/history` |
+| Read one full record and its decision history | `/show` |
+| Add a campaign, idea or criterion | `/add` |
+| Change an editable record field | `/update` |
+| Record a dated idea note | `/log` |
+| Send a submitted idea into review | `/start-review` |
+| Score one criterion with a reason | `/score` |
+| Approve a funded pilot after independent scoring | `/approve-pilot` |
+| Record the measured result and evidence | `/finish-pilot` |
+| Approve implementation after a passed pilot | `/implement` |
+| Close an idea with a reason | `/reject` |
+| Record a measured outcome period | `/record-outcome` |
+| Verify an outcome as a different person | `/verify-outcome` |
+| Close a campaign after its ideas are resolved | `/close-campaign` |
+| Rehearse and import Ideanote idea exports | `/import` |
+| Export the whole database to JSON | `/export` |
+| Draft the Monday idea, pilot and outcome review | `/weekly-review` |
+| Draft the next approval meeting pack | `/draft-decision-pack` |
+| Draft pilot results and measured outcomes | `/draft-pilot-report` |
+| Read syntax and editable fields | `/help` |
+| Change a field or rule | `/customise` |
+| Add a read-only report | `/new-view` |
 
-If an ask fits nothing here, run the CLI directly (`npm run <cli> -- --help`) and then propose a new command for it.
+If an ask fits nothing here, run the CLI directly (`npm run innovation -- help`) and then propose a new command for it.
 
 ## Hard rules
 
@@ -41,3 +76,7 @@ If an ask fits nothing here, run the CLI directly (`npm run <cli> -- --help`) an
 - `docs/` the thesis and the guide for moving off Ideanote.
 
 Built by Enterprise DNA. Installed and run for you as part of Omni: https://enterprisedna.co/omni/instead-of/ideanote
+
+## Domain controls
+
+Read docs/compliance.md before changing policy. Scoring is 1 to 5 with weights per campaign. Two reviewers must complete every criterion before pilot approval. Imported phase is context, not approval. Never annualise outcome amounts or combine currencies. A confidentiality flag does not enforce access. The local database is for a trusted operator.

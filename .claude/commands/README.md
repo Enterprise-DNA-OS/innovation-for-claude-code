@@ -1,5 +1,3 @@
-# Slash commands
+# Innovation commands
 
-One file per recurring job. Each command tells Claude Code exactly which CLI command to run and how to present the result, so the operator never re-explains the job.
-
-Add a command every time the same ask comes twice. Frontmatter needs a `description:` line. The body is the brief.
+Read CLAUDE.md for the routing table. Every business action runs through scripts/innovation.mjs. Customise and new-view modify this codebase with tested migrations. No command sends.

@@ -1,11 +1,54 @@
 [
   {
-    "name": "example",
-    "title": "TODO(author): the first document this industry must produce",
-    "for_each": "select gen_random_uuid() as id, 'Example' as name",
+    "name": "decision-pack",
+    "title": "Innovation decision pack",
+    "for_each": "select id,name from campaigns order by name",
     "file": "name",
     "sections": [
-      { "title": "Details", "sql": "select 'replace me' as item, $1::text as record_id" }
+      {
+        "title": "Purpose and budget",
+        "sql": "select name,owner,objective,currency,budget,closes_on,status from campaigns where id=$1"
+      },
+      {
+        "title": "Ideas and evidence coverage",
+        "sql": "select s.name,s.stage,s.covered,s.criteria,s.complete_reviewers,s.weighted_score from idea_scores s join ideas i on i.id=s.id where i.campaign_id=$1 order by s.name"
+      },
+      {
+        "title": "Decision record",
+        "sql": "select i.name,d.actor,d.reason,d.from_stage,d.to_stage,d.created_at from decisions d join ideas i on i.id=d.idea_id where i.campaign_id=$1 order by d.created_at"
+      }
+    ]
+  },
+  {
+    "name": "pilot-report",
+    "title": "Pilot result record",
+    "for_each": "select id,name from pilots order by name",
+    "file": "name",
+    "sections": [
+      {
+        "title": "Hypothesis and result",
+        "sql": "select name,owner,hypothesis,metric,baseline,target,actual,direction,status,evidence,due_date from pilots where id=$1"
+      },
+      {
+        "title": "Approved commitment",
+        "sql": "select p.cost,c.currency,p.approved_by from pilots p join ideas i on i.id=p.idea_id join campaigns c on c.id=i.campaign_id where p.id=$1"
+      }
+    ]
+  },
+  {
+    "name": "outcome-statement",
+    "title": "Measured outcome statement",
+    "for_each": "select id,name from campaigns order by name",
+    "file": "name",
+    "sections": [
+      {
+        "title": "Measured periods",
+        "sql": "select i.name,o.name outcome,o.period_start,o.period_end,o.amount,c.currency,o.evidence,o.recorded_by,o.verified_by from outcomes o join ideas i on i.id=o.idea_id join campaigns c on c.id=i.campaign_id where c.id=$1 order by o.period_start"
+      },
+      {
+        "title": "Verified totals",
+        "sql": "select name,currency,verified_outcomes from campaign_summary where id=$1"
+      }
     ]
   }
 ]
